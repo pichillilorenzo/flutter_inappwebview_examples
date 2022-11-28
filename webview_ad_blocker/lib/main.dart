@@ -97,22 +97,22 @@ class _MyAppState extends State<MyApp> {
         ),
         body: SafeArea(
             child: Column(children: <Widget>[
-              Expanded(
-                child: Stack(
-                  children: [
-                    InAppWebView(
-                      key: webViewKey,
-                      initialUrlRequest:
+          Expanded(
+            child: Stack(
+              children: [
+                InAppWebView(
+                  key: webViewKey,
+                  initialUrlRequest:
                       URLRequest(url: WebUri('https://www.tomshardware.com/')),
-                      initialSettings:
+                  initialSettings:
                       InAppWebViewSettings(contentBlockers: contentBlockers),
-                      onWebViewCreated: (controller) {
-                        webViewController = controller;
-                      },
-                    ),
-                  ],
+                  onWebViewCreated: (controller) {
+                    webViewController = controller;
+                  },
                 ),
-              ),
-            ])));
+              ],
+            ),
+          ),
+        ])));
   }
 }
