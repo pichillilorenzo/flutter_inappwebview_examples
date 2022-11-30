@@ -2,6 +2,7 @@
 
 A collection of [`flutter_inappwebview`](https://github.com/pichillilorenzo/flutter_inappwebview) project examples:
 - [back_forward_navigation_gestures](/back_forward_navigation_gestures/): Add support for Android back button and iOS navigation gestures to allow back/forward WebView history navigation.
+- [custom_error_page](/custom_error_page/): Handle web page loading errors and show a custom error page.
 - [custom_in_app_browser](/custom_in_app_browser/): An implementation of a custom In-App Browser using the `InAppWebView` widget, such as the Facebook or LinkedIn In-App Browser.
 - [custom_text_size](/custom_text_size/): Set custom text size/zoom to the whole web page.
 - [file_download](/file_download/): Add support to file download.
