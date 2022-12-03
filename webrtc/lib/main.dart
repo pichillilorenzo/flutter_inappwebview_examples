@@ -68,16 +68,14 @@ class _MyAppState extends State<MyApp> {
               },
               onPermissionRequest: (controller, request) async {
                 final resources = <PermissionResourceType>[];
-                if (request.resources.contains(PermissionResourceType.CAMERA) &&
-                    !await Permission.camera.isGranted) {
+                if (request.resources.contains(PermissionResourceType.CAMERA)) {
                   final cameraStatus = await Permission.camera.request();
                   if (!cameraStatus.isDenied) {
                     resources.add(PermissionResourceType.CAMERA);
                   }
                 }
                 if (request.resources
-                        .contains(PermissionResourceType.MICROPHONE) &&
-                    !await Permission.microphone.isGranted) {
+                    .contains(PermissionResourceType.MICROPHONE)) {
                   final microphoneStatus =
                       await Permission.microphone.request();
                   if (!microphoneStatus.isDenied) {
@@ -85,10 +83,8 @@ class _MyAppState extends State<MyApp> {
                   }
                 }
                 // only for iOS and macOS
-                if (request.resources.contains(
-                        PermissionResourceType.CAMERA_AND_MICROPHONE) &&
-                    (!await Permission.camera.isGranted ||
-                        !await Permission.microphone.isGranted)) {
+                if (request.resources
+                    .contains(PermissionResourceType.CAMERA_AND_MICROPHONE)) {
                   final cameraStatus = await Permission.camera.request();
                   final microphoneStatus =
                       await Permission.microphone.request();
