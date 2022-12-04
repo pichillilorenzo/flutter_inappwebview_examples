@@ -13,3 +13,4 @@ A collection of [`flutter_inappwebview`](https://github.com/pichillilorenzo/flut
 - [web_notification](/web_notification/): Example of an implementation of the [Web Notification JavaScript API](https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API).
 - [webrtc](/webrtc/): A WebRTC example using the [AppRTC Demo](https://apprtc.webrtcserver.cn/) or the [PubNub WebRTC Demo](https://www.pubnub.com/developers/demos/webrtc/launch/).
 - [webview_ad_blocker](/webview_ad_blocker/): WebView with a simple Ad Blocker to block ads loading from specific URLs, such as Google Ads.
+- [popup_window](/popup_window/): Add support to manage requests that open a new window using JavaScript (`window.open()`) or by the target attribute in a link (such as `target="_blank"`).
