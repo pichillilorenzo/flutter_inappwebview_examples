@@ -6,6 +6,7 @@ A collection of [`flutter_inappwebview`](https://github.com/pichillilorenzo/flut
 - [custom_in_app_browser](/custom_in_app_browser/): An implementation of a custom In-App Browser using the `InAppWebView` widget, such as the Facebook or LinkedIn In-App Browser.
 - [custom_text_size](/custom_text_size/): Set custom text size/zoom to the whole web page.
 - [file_download](/file_download/): Add support to file download.
+- [progress_indicator](/progress_indicator/): Add a progress indicator such as `LinearProgressIndicator` or `CircularProgressIndicator` while the WebView is loading.
 - [pwa_to_flutter_app](/pwa_to_flutter_app/): Convert a PWA to a Flutter App.
 - [third_party_oauth_user_sign_in](/third_party_oauth_user_sign_in/): Add support for third-party OAuth user sign-in services, such as Google OAuth Sign-In service.
 - [web_automation_framework](/web_automation_framework/): An example implementation of a headless web automation framework similar to [Puppeteer](https://github.com/puppeteer/puppeteer) or [Playwright](https://github.com/microsoft/playwright).
