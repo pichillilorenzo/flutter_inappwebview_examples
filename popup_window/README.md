@@ -1,4 +1,4 @@
-# popup_window
+# Popup Window
 
 Add support to manage requests that open a new window using JavaScript (`window.open()`) or by the target attribute in a link (such as `target="_blank"`).
 
