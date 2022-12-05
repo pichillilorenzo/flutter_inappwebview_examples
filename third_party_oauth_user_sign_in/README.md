@@ -13,5 +13,4 @@ A similar behaviour exists for Facebook login.
 In general, these services recognize the default WebView user agent, so to make it work, you could just set a custom user agent value.
 
 ![Android example](https://user-images.githubusercontent.com/5956938/204262729-f5921f45-e65d-4b8a-ae63-9a989923f63f.gif)
-
 ![iOS example](https://user-images.githubusercontent.com/5956938/204262731-203e98ae-699d-455b-9ba1-8b3930c9b048.gif)

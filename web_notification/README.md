@@ -24,4 +24,4 @@ Notification.requestPermission().then(result => {
 });
 ```
 
-![Simulator Screen Recording - iPhone 14 Pro Max - 2022-11-24 at 23 25 39](https://user-images.githubusercontent.com/5956938/203871695-7e183f76-36b3-4c5e-bb8f-a4581feb6391.gif)
+![iOS example](https://user-images.githubusercontent.com/5956938/203871695-7e183f76-36b3-4c5e-bb8f-a4581feb6391.gif)
