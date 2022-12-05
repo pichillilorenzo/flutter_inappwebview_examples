@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 // Use WidgetsBindingObserver to listen when the app goes in background
@@ -44,7 +44,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       // because they recognize and block the default WebView User Agent.
       userAgent:
           'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.5304.105 Mobile Safari/537.36',
-
       disableDefaultErrorPage: true,
 
       // enable iOS service worker feature limited to defined App Bound Domains
@@ -134,7 +133,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                           : URLRequestCachePolicy.RETURN_CACHE_DATA_ELSE_LOAD;
 
                       final webViewInitialSettings = sharedSettings.copy();
-                      webViewInitialSettings.useShouldOverrideUrlLoading = true;
                       webViewInitialSettings.cacheMode = cacheMode;
 
                       return InAppWebView(
@@ -180,16 +178,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                           return NavigationActionPolicy.ALLOW;
                         },
                         onLoadStop: (controller, url) async {
-                          if (await isNetworkAvailable() && !(await isPWAInstalled())) {
+                          if (await isNetworkAvailable() &&
+                              !(await isPWAInstalled())) {
                             // if network is available and this is the first time
                             setPWAInstalled();
                           }
-                        },
-                        onPermissionRequest:
-                            (controller, permissionRequest) async {
-                          return PermissionResponse(
-                              action: PermissionResponseAction.GRANT,
-                              resources: permissionRequest.resources);
                         },
                         onReceivedError: (controller, request, error) async {
                           final isForMainFrame = request.isForMainFrame ?? true;
@@ -206,7 +199,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                             builder: (context) {
                               final popupWebViewSettings =
                                   sharedSettings.copy();
-                              popupWebViewSettings.useShouldOverrideUrlLoading =
+                              popupWebViewSettings.supportMultipleWindows =
+                                  false;
+                              popupWebViewSettings
+                                      .javaScriptCanOpenWindowsAutomatically =
                                   false;
 
                               return WebViewPopup(

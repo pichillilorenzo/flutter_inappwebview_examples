@@ -31,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_inappwebview: ^6.0.0-beta.16
+  flutter_inappwebview: ^6.0.0-beta.20
   connectivity_plus: ^3.0.2
   url_launcher: ^6.1.6
   shared_preferences: ^2.0.15
