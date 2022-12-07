@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         break;
       case 1:
         await webViewController?.evaluateJavascript(source: """
-          var testNotification = new Notification('Notification Title', {body: 'Notification Body!', icon: 'https://picsum.photos/250?image=9', vibrate: [200, 100, 200]});
+          var testNotification = new Notification('Notification Title', {body: 'Notification Body!', icon: 'https://picsum.photos/150?random=' + Date.now(), vibrate: [200, 100, 200]});
           testNotification.addEventListener('show', function(event) {
             console.log('show log');
           });
@@ -73,9 +73,11 @@ class _MyAppState extends State<MyApp> {
         break;
       case 2:
         await webViewController?.evaluateJavascript(source: """
-          if (testNotification != null) {
-            testNotification.close();
-          }
+          try {
+            if (testNotification != null) {
+              testNotification.close();
+            }
+          } catch {}
         """);
         break;
       case 3:
@@ -197,6 +199,14 @@ class _MyAppState extends State<MyApp> {
 
   void onShowNotification(WebNotification notification) async {
     webNotificationController?.notifications[notification.id] = notification;
+
+    var iconUrl =
+        notification.icon != null ? Uri.tryParse(notification.icon!) : null;
+    if (iconUrl != null && !iconUrl.hasScheme) {
+      iconUrl = Uri.tryParse(
+          (await webViewController?.getUrl()).toString() + iconUrl.toString());
+    }
+
     final snackBar = SnackBar(
       duration: const Duration(seconds: 5),
       action: SnackBarAction(
@@ -207,11 +217,11 @@ class _MyAppState extends State<MyApp> {
       ),
       content: Row(
         children: <Widget>[
-          notification.icon != null
+          iconUrl != null
               ? Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Image.network(
-                    notification.icon!,
+                    iconUrl.toString(),
                     width: 50,
                   ),
                 )

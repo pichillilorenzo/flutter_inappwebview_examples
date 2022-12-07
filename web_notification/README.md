@@ -5,7 +5,9 @@ Example of an implementation of the [Web Notification JavaScript API](https://de
 It uses a [`UserScript`](https://inappwebview.dev/docs/webview/javascript/user-scripts) to inject custom JavaScript code
 at web page startup to implement the Web Notification API.
 
-The injected JavaScript code tries to create a "polyfill" for the `Notification` window object
+The injected JavaScript code tries to create a "polyfill" for:
+- the `Notification` window object
+- the `ServiceWorkerRegistration.showNotification` and `ServiceWorkerRegistration.getNotifications` methods
 and communicate with Flutter/Dart side using [JavaScript Handlers](https://inappwebview.dev/docs/webview/javascript/communication#JavaScript-Handlers)
 to manage and implement the corresponding Notification UI,
 for example when you are requesting permission with `Notification.requestPermission()`

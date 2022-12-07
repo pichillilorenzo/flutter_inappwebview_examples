@@ -1,4 +1,7 @@
 (function(window) {
+  if (window.Notification != null) {
+    return;
+  }
   if (!window.isSecureContext) {
     // Secure context: This feature is available only in secure contexts (HTTPS), in some or all supporting browsers.
     // https://developer.mozilla.org/en-US/docs/Web/API/Notification
@@ -117,10 +120,13 @@
   }
 
   // Static Notification methods
-  Notification.requestPermission = function() {
+  Notification.requestPermission = function(callback) {
     var self = this;
     return window.flutter_inappwebview.callHandler('Notification.requestPermission').then(function(result) {
       Notification._permission = result;
+      if (callback != null) {
+        callback(result);
+      }
       return result;
     }).catch(function() {
       var event = new Event('error');
@@ -153,6 +159,31 @@
     set: function () {},
     enumerable: true
   });
+
+  if (window.ServiceWorkerRegistration != null) {
+    window.ServiceWorkerRegistration.prototype.showNotification = function(title, options) {
+      if (this._notifications == null) {
+        this._notifications = [];
+      }
+      var notifications = this._notifications;
+      return new Promise(function(resolve, reject) {
+        notifications.push(new Notification(title, options));
+        resolve();
+      });
+    }
+
+    window.ServiceWorkerRegistration.prototype.getNotifications = function(options) {
+      var notifications = this._notifications != null ? this._notifications : [];
+      if (options != null && options.tag != null) {
+        notifications = notifications.filter(function(notification) {
+          return notification.tag === options.tag;
+        });
+      }
+      return new Promise(function(resolve, reject) {
+        resolve(notifications);
+      });
+    }
+  }
 
   window.Notification = Notification;
 })(window);
